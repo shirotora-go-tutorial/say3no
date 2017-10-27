@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+// asm.go, array,slice,mapのこと
+
 // var arr [n]type
 var arr [10]int // intは0で初期化される？
 //var brr [5]int // intは0で初期化される？
@@ -51,9 +53,23 @@ func main() {
 
 	fmt.Println(a)
 	fmt.Println(a.len)
-	fmt.Println(a.)
 	fmt.Println(b)
 
 	/* 重要なのは、sliceは参照型だ、ということ */
+
+	// map
+	// mapの概念もpythonのディクショナリと似ている
+	// 言い方は色々あるけど要するに連想配列。Map as Dictonary of python
+
+	//	var numbers map[string]int
+
+	// array,sliceは別にarrayとかsliceとか宣言しない。けどmapはする。
+	// map型、keyはstring,valueはint。だろ？ゴン
+
+
+	// もう一つの宣言方法。なんでmake?
+	//numbers := make(map[string]int)
+
+	//>mapは他の基本型と異なり、thread-safeではありません。複数のgo-routineを扱う際には必ずmutex lockメカニズムを使用する必要があります。
 
 }
