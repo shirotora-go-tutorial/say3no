@@ -1,6 +1,7 @@
 package main
 
 import "fmt"
+import "errors"
 
 var frenchHello string      // 文字列変数の宣言の一般的な方法
 var emptyString string = "" //空文字列で初期化
@@ -89,6 +90,36 @@ worlda
     sdlkfjlksdjfa
                 dsafkjlsdfa`
 	fmt.Printf("%s\n", m)
+
+	// 配列
+
+	/*
+	これはだめ
+	bytes := [5]byte{'h', 'e', 'l', 'l', 'o'}
+	fmt.Print(bytes)
+	hoge := string(bytes)
+	fmt.Print(hoge)
+	*/
+
+	/*
+	これもだめ
+	bytes := [5]byte{"h", "e", "l", "l", "o"}
+	fmt.Print(bytes)
+	hoge := string(bytes)
+	fmt.Print(hoge)
+	*/
+
+	/*
+
+	byteってなに？！？！？！？？！？！？！？？！？？！？
+
+	 */
+
+	// Error型。
+	err := errors.New("emit macho dwarf: elf header corrupted")
+	if err != nil {
+		fmt.Print(err)
+	}
 
 }
 
