@@ -11,10 +11,6 @@
 
 ## わからん
 
-![hoge](https://github.com/shirotora-go-tutorial/say3no/wakaran.png)
-
-
-
 ## 言語特徴っぽいのメモ
 
  - >注意：一般的にpackageの名前とディレクトリ名は一致させるべきです。
