@@ -11,8 +11,7 @@
 
 ## わからん
 
-![hoge](./wakaran.png)
-!(hoge)[./wakaran.png]
+![hoge](https://github.com/shirotora-go-tutorial/say3no/wakaran.png)
 
 
 
