@@ -3,6 +3,19 @@
 [Go Web プログラミング チュートリアル 
 ](https://astaxie.gitbooks.io/build-web-application-with-golang/content/ja/index.html)
 
+## 大事な言語特徴
+
+- **配列間の代入は値渡し**.配列が関数と引数となった場合、渡されるのは配列のコピーである。
+- **ポインタを使いたい場合はsliceを使え。**
+- 重要なのは、sliceは参照型だ、ということ。**sliceを何度sliceしようが原初の配列のポインタを参照している。**
+
+## わからん
+
+![hoge](./wakaran.png)
+!(hoge)[./wakaran.png]
+
+
+
 ## 言語特徴っぽいのメモ
 
  - >注意：一般的にpackageの名前とディレクトリ名は一致させるべきです。
