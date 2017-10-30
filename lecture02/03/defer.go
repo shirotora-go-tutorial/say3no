@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"fmt"
 )
 
 // defer。これはjsのdeferでいいのかな？
@@ -9,32 +10,22 @@ import (
 
 // TODO:特に、リソースをオープンする操作を行なっているようなとき、エラーの発生に対してロールバックし、必要なリソースをクローズする必要があるかと思います。さもなければとても簡単にリソースのリークといった問題を引き起こすことになります。我々はリソースを開く際は一般的に以下のようにします
 
+func main() {
+	ReadWrite()
 
-
-/* 重複が見られるコード。本来os.Closeは一度でいいはず。
-func ReadWrite() bool {
-	os.Open("hoge.txt")
-
-	// なにかを行う
-
-	if failuerX {
-		os.Close()
-		return false
+	// deferが複数ある場合はLIFO
+	for i := 0; i < 5; i++ {
+		defer fmt.Printf("%d ", i)
 	}
-
-	if failuerY {
-		os.Close()
-		return false
-	}
-
-	os.Close()
-	return true
 
 }
 
-*/
-
-
-
-
-
+// この場合、deferはreturnの後に実行される。
+func ReadWrite() bool {
+	var file, err = os.Open("hoge.txt")
+	defer file.Close()
+	if err != nil {
+		return false
+	}
+	return true
+}
