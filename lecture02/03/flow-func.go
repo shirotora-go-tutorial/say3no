@@ -105,11 +105,7 @@ func main() {
 	fmt.Printf("%d * %d = %d \n", a, b, product)
 
 	kahencho(1, 2, 3, 4, 5, 6, 7, 8, 9)
-	kahencho(10,11,12,13,14)
-
-
-
-
+	kahencho(10, 11, 12, 13, 14)
 
 }
 
