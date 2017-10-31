@@ -12,6 +12,10 @@ package main
 import "fmt"
 
 type testInt func(int) bool // 関数の型を宣言します
+/*
+func(int) bool 型の関数を扱う型。
+ちなみに構造体の定義は多分typeでやるんだと思う
+ */
 
 func isOdd(integer int) bool {
 	if integer%2 == 0 {
@@ -47,6 +51,3 @@ func main() {
 	fmt.Println("Odd elements of slice are : ", even)
 
 }
-
-
-
