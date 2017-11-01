@@ -26,6 +26,12 @@
   - `go install`によって`go build`で生成されるファイルが`$GOPATH/bin/`に設置される
  - そいつは既にパスが通っていて、簡単にCLIツールが出来るワケだ
  - packageが`main`なら実行アプリ、`main`じゃなければアプリパッケージ
+ - init,mainは引数も戻り値も設定できない
+ - initはpackageに対してひとつまで。またGoが自動でコールする。
+ - `main`packageから全ては始まる。mainが他のパッケージをimportしていたら、コンパイル時にその依存パッケージがimportされる。
+ 
+ 
+ 
  
 **リモートパッケージの取得について**
 
@@ -124,6 +130,36 @@ go get golang.org/x/tools/cmd/godoc
 `godoc fmt Printf`でfmtのPrintfの確認。
 `godoc -src fmt Printf`でコードの確認。
 
+
+## importについて
+### rename
+
+```go
+import(
+	. "fmt"
+	sukinaNamae "os"
+)
+```
+
+`.`がつくとコール時にpackageNameを省略できる。
+`sukinaNamae` ではpythonの`as`みたいに好きな名前をつけられる
+
+```go
+Println("hoge") /// fmt.Println("hoge")
+sukinaName.Open("hoge.txt")
+```
+
+
+### initだけしたい
+ 
+>  _操作はこのパッケージをインポートするだけでパッケージの中の関数を直接使うわけではなく、このパッケージの中にあるinit関数をコールします。
+
+```go
+import(
+	"database/sql"
+	_ "github.com/ziutek/mymysql/godrv"
+)
+````
 
 
 
