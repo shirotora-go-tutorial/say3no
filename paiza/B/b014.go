@@ -10,56 +10,83 @@ import (
 
 var sci = bufio.NewScanner(os.Stdin)
 
-func nextin() string {
+func nextIn() string {
 	sci.Scan()
 	return sci.Text()
 }
 
 func sAtoi(input string) (m, n, k int) {
-	var arr_st = []string{}
-	var arr_int = []int{}
-	arr_st = strings.Split(input, " ")
-	for _, v := range arr_st {
+	var arrStr = []string{}
+	var arrInt = []int{}
+	arrStr = strings.Split(input, " ")
+	for _, v := range arrStr {
 		temp, _ := strconv.Atoi(v)
-		arr_int = append(arr_int, temp)
+		arrInt = append(arrInt, temp)
 	}
-	return arr_int[0], arr_int[1], arr_int[2]
+	return arrInt[0], arrInt[1], arrInt[2]
 }
 
 func main() {
-	var x, y, z int = sAtoi(nextin()) // 立候補者m,有権者n, 演説回数k
-	var yy = []string{}
-	var yoko = [][]string{}
-	row := ""
-	var outputs = []string{}
+	var x, y, z int = sAtoi(nextIn())
+	var yoko = []string{}
+	var sideView = []string{}
+
+	yoko = initYoko(yoko, y)
 
 	for i := 1; i <= z; i++ {
-		for i := 1; i <= x; i++ {
-			s := nextin()
-			c := []byte(s)
-			for i := 0; i < y; i++ {
-				s2 := string(c[i])
-				yy = append(yy, s2)
-			}
-			yoko = append(yoko, yy)
-			yy = nil
-		}
-		nextin()
-	}
-	fmt.Println(yoko)
-
-	for i := 1; i <= z; i++ {
-		for k := 1; k < y; k++ {
-			for j := 1; j < x; j++ {
-				fmt.Println("a:", i*x-k+1, " j: ", j-1)
-				if yoko[i*x-k+1][j-1] == "#" {
-					row += "#"
-				}
+		for j := 1; j <= x; j++ {
+			row := splitEachChar(nextIn()) // まず一文字ずつ分割.配列の長さはy
+			for i, v := range row {
+				yoko = updateYoko(yoko, i, v) // 長さyのスライスを返す
 			}
 		}
-		outputs = append(outputs, row)
-		row = ""
+		nextIn()
+		sideView = append(sideView, concatYoko(yoko))
+		yoko = initYoko(yoko, y)
 	}
 
-	fmt.Println(outputs)
+	for i := len(sideView) - 1; i >= 0; i-- {
+		fmt.Println(sideView[i])
+	}
+
+}
+
+func splitEachChar(str string) []string {
+	return strings.Split(str, "")
+}
+
+func updateYoko(yoko []string, i int, v string) []string {
+	if checkBlock(v) && checkYoko(yoko, i) { // v が# かつ yokoが.なら更新
+		yoko[i] = v
+	}
+	return yoko
+}
+
+func checkBlock(str string) (ret bool) {
+	if str == "#" {
+		ret = true
+	}
+	return ret
+}
+
+func checkYoko(yoko []string, i int) (ret bool) {
+	if yoko[i] == "." {
+		ret = true
+	}
+	return ret
+}
+
+func initYoko(yoko []string, y int) []string {
+	yoko = nil
+	for i := 1; i <= y; i++ {
+		yoko = append(yoko, ".")
+	}
+	return yoko
+}
+
+func concatYoko(yoko []string) (concatYoko string) {
+	for _, v := range yoko {
+		concatYoko += v
+	}
+	return concatYoko
 }
