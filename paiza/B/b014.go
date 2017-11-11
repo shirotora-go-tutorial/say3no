@@ -48,7 +48,6 @@ func main() {
 	for i := len(sideView) - 1; i >= 0; i-- {
 		fmt.Println(sideView[i])
 	}
-
 }
 
 func splitEachChar(str string) []string {
@@ -56,21 +55,14 @@ func splitEachChar(str string) []string {
 }
 
 func updateYoko(yoko []string, i int, v string) []string {
-	if checkBlock(v) && checkYoko(yoko, i) { // v が# かつ yokoが.なら更新
+	if isFilledCell(v) && !(isFilledCell(yoko[i])) { // v が# かつ yokoが.なら更新
 		yoko[i] = v
 	}
 	return yoko
 }
 
-func checkBlock(str string) (ret bool) {
+func isFilledCell(str string) (ret bool) {
 	if str == "#" {
-		ret = true
-	}
-	return ret
-}
-
-func checkYoko(yoko []string, i int) (ret bool) {
-	if yoko[i] == "." {
 		ret = true
 	}
 	return ret
