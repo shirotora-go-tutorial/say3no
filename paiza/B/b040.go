@@ -34,8 +34,8 @@ func main() {
 		if w != " " {
 			for i := 1; i <= times; i++ {
 				// 現在の文字が暗号の並び順で何番目か
-				idx = ruleIndex(rule, w)
-				w = alphabetIndex(idx)
+				idx = idxInRule(rule, w)
+				w = idx2char(idx)
 			}
 		}
 		ans += w
@@ -49,7 +49,7 @@ func splitEachChar(str string) []string {
 	return strings.Split(str, "")
 }
 
-func ruleIndex(code []string, s string) (idx int) {
+func idxInRule(code []string, s string) (idx int) {
 	for i, v := range code {
 		if v == s {
 			idx = i
@@ -58,7 +58,7 @@ func ruleIndex(code []string, s string) (idx int) {
 	return idx
 }
 
-func alphabetIndex(idx int) (w string) {
+func idx2char(idx int) (w string) {
 	switch idx {
 	case 0:
 		w = "a"

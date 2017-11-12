@@ -55,7 +55,7 @@ func splitEachChar(str string) []string {
 }
 
 func updateYoko(yoko []string, i int, v string) []string {
-	if isFilledCell(v) && !(isFilledCell(yoko[i])) { // v が# かつ yokoが.なら更新
+	if isFilledCell(v) && !(isFilledCell(yoko[i])) {
 		yoko[i] = v
 	}
 	return yoko
